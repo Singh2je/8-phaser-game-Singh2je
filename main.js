@@ -4,6 +4,7 @@ var mainState = {
         // Load the bird sprite
         game.load.image('bird', 'assets/bird.png'); 
         game.load.image('pipe', 'assets/pipe.png');
+        game.load.audio('jump', 'assets/jump.wav'); 
     },
     
     create: function() { 
@@ -16,6 +17,8 @@ var mainState = {
 
         // Create an empty group
         this.pipes = game.add.group(); 
+
+        this.jumpSound = game.add.audio('jump'); 
 
         // Change the background color of the game to blue
         game.stage.backgroundColor = '#71c5cf';
@@ -62,7 +65,7 @@ var mainState = {
         
         if (this.bird.alive == false)
             return;  
-            
+
         // Add a vertical velocity to the bird
         this.bird.body.velocity.y = -280;
 
@@ -74,6 +77,8 @@ var mainState = {
 
         // And start the animation
         animation.start(); 
+
+        this.jumpSound.play(); 
 
     },
 
